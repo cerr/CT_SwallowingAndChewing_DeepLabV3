@@ -1,7 +1,7 @@
 # CT_SwallowingAndChewing_DeepLabV3
 
 This repository contains pre-trained models and code for deep learning-based autosegmentation of swallowing and chewing structures viz. masseters (left and right),
-medial pterygoids (left and right), larynx, and pharyngeal constrictor muscle. A Colab notebook (demo_CT_SwallowingAndChewing_DeepLabV3.ipynb) is provided to demonstrate usage.
+medial pterygoids (left and right), larynx, and pharyngeal constrictor muscle. A Colab notebook [demo_DLseg_swallowing_and_chewing_structures.ipynb](https://github.com/cerr/CT_SwallowingAndChewing_DeepLabV3/blob/master/demo_DLseg_swallowing_and_chewing_structures.ipynb) is provided to demonstrate usage.
 
 # License
 This codebase uses the GNU-GPL copyleft license (https://www.gnu.org/licenses/lgpl3.0.en.html) to allow open-source distribution with additional restrictions. The
