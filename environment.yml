@@ -1,16 +1,15 @@
-name: swChewEnv
+name: swChewEnvWin
 channels:
+  - anaconda
   - esri
   - conda-forge
-  - anaconda
   - defaults
 dependencies:
-  - ca-certificates=2020.6.24
-  - certifi=2020.6.20
+  - ca-certificates=2021.7.5
+  - certifi=2021.5.30
   - fastcache=1.1.0
   - libffi=3.2.1
-  - mpmath=1.1.0
-  - openssl=1.1.1g
+  - openssl=1.1.1l
   - pip=19.3.1
   - python=3.7.3
   - python_abi=3.7
@@ -36,5 +35,5 @@ dependencies:
     - sympy==1.4
     - torch==1.0.1
     - torchvision==0.2.2
-    - tqdm==4.31.1
-prefix: \usr\local\envs\swChewEnv
+    - tqdm==4.19.9
+prefix: C:\Miniconda3\envs\swChewEnvWin
