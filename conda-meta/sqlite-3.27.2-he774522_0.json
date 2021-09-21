@@ -1,0 +1,68 @@
+{
+ "build": "he774522_0",
+ "build_number": 0,
+ "channel": "https://conda.anaconda.org/anaconda/win-64",
+ "constrains": [],
+ "depends": [
+  "vc >=14.1,<15.0a0"
+ ],
+ "extracted_package_dir": "",
+ "features": "",
+ "files": [
+  "Library/bin/sqlite3.dll",
+  "Library/bin/sqlite3.exe",
+  "Library/include/sqlite3.h",
+  "Library/lib/sqlite3.lib",
+  ".nonadmin"
+ ],
+ "fn": "sqlite-3.27.2-he774522_0.tar.bz2",
+ "license": "Public-Domain (http://www.sqlite.org/copyright.html)",
+ "link": {
+  "source": "",
+  "type": 1
+ },
+ "md5": "7706950b659147fc9180d254d48ac9c8",
+ "name": "sqlite",
+ "package_tarball_full_path": "",
+ "paths_data": {
+  "paths": [
+   {
+    "_path": "Library/bin/sqlite3.dll",
+    "path_type": "hardlink",
+    "sha256": "765abaeaf32524ea83a82e661a4d0bb7843b90811e65f3df4e1bb54623047b6a",
+    "sha256_in_prefix": "765abaeaf32524ea83a82e661a4d0bb7843b90811e65f3df4e1bb54623047b6a",
+    "size_in_bytes": 1018880
+   },
+   {
+    "_path": "Library/bin/sqlite3.exe",
+    "path_type": "hardlink",
+    "sha256": "f51cf1e9fd6011170141c25484e91cfcf0fa56851eca725a0a845bcb73aa8694",
+    "sha256_in_prefix": "f51cf1e9fd6011170141c25484e91cfcf0fa56851eca725a0a845bcb73aa8694",
+    "size_in_bytes": 1290240
+   },
+   {
+    "_path": "Library/include/sqlite3.h",
+    "path_type": "hardlink",
+    "sha256": "09e5a8c3bcd26b617a6c406a6680855e530e83f8678060b65ff7fe255d06ddc8",
+    "sha256_in_prefix": "09e5a8c3bcd26b617a6c406a6680855e530e83f8678060b65ff7fe255d06ddc8",
+    "size_in_bytes": 557843
+   },
+   {
+    "_path": "Library/lib/sqlite3.lib",
+    "path_type": "hardlink",
+    "sha256": "420f3c12e898455f9c366997878e25469bf71b50c6623af6f457c475c86ff9b2",
+    "sha256_in_prefix": "420f3c12e898455f9c366997878e25469bf71b50c6623af6f457c475c86ff9b2",
+    "size_in_bytes": 58912
+   }
+  ],
+  "paths_version": 1
+ },
+ "requested_spec": "sqlite=3.27.2",
+ "sha256": "c8a4e2699c950ec14ec00f74bbb7643d776497ff806468e257348f2ae8940e0b",
+ "size": 963852,
+ "subdir": "win-64",
+ "timestamp": 1552417728456,
+ "track_features": "",
+ "url": "https://conda.anaconda.org/anaconda/win-64/sqlite-3.27.2-he774522_0.tar.bz2",
+ "version": "3.27.2"
+}
