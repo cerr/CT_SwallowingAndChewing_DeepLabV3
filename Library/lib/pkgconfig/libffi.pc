@@ -1,0 +1,11 @@
+prefix=/d/bld/libffi_1597209375350/_h_env/Library
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+toolexeclibdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.2.1
+Libs: -L${toolexeclibdir} -llibffi
+Cflags: -I${includedir}
