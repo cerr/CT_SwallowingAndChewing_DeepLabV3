@@ -20,7 +20,7 @@ provides implementations of the developed models, whereas the creators of models
 
 
 # Citation
-[1] Iyer A, Thor M, Haq R, et al. Deep learning-based auto-segmentation of swallowing and chewing structures. bioRxiv 2019; https://doi.org/10.1101/772178
+[1] Iyer A, Thor M, Haq R, et al. Deep learning-based auto-segmentation of swallowing and chewing structures. bioRxiv 2019; https://doi.org/10.1101/772178  
 [2] Iyer, A., Locastro, E., Apte, A., Veeraraghavan, H. and Deasy, J.O., 2021. Portable framework to deploy deep learning segmentation models for medical images. bioRxiv.https://www.biorxiv.org/content/10.1101/2021.03.17.435903v1.full    
 [3] Aditya P. Apte, Aditi Iyer, Maria Thor, Rutu Pandya, Rabia Haq, Jue Jiang, Eve LoCastro, Amita Shukla-Dave, Nishanth Sasankan, Ying Xiao, Yu-Chi Hu, Sharif Elguindi, Harini Veeraraghavan, Jung Hun Oh, Andrew Jackson, Joseph O. Deasy, Library of deep-learning image segmentation and outcomes model-implementations, Physica Medica, Volume 73, 2020, Pages 190-196, ISSN 1120-1797, https://doi.org/10.1016/j.ejmp.2020.04.011.
 
