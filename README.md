@@ -13,7 +13,7 @@ provides implementations of the developed models, whereas the creators of models
 
 
 # Citation
-Iyer A, Thor M, Haq R, et al. Deep learning-based auto-segmentation of swallowing and chewing structures. bioRxiv 2019; https://doi.org/10.1101/772178
+* Iyer A, Thor M, Onochie I, Hesse J, Zakeri K, LoCastro E, Jiang J, Veeraraghavan H, Elguindi S, Lee NY, Deasy JO, and Apte AP. "Prospectively-validated deep learning model for segmenting swallowing and chewing structures in CT." *Physics in Medicine & Biology*, vol. 67, no. 2, 2022, p. 024001., https://doi.org/10.1088/1361-6560/ac4000.
 
-Aditya P. Apte, Aditi Iyer, Maria Thor, Rutu Pandya, Rabia Haq, Jue Jiang, Eve LoCastro, Amita Shukla-Dave, Nishanth Sasankan, Ying Xiao, Yu-Chi Hu, Sharif Elguindi, Harini Veeraraghavan, Jung Hun Oh, Andrew Jackson, Joseph O. Deasy, Library of deep-learning image segmentation and outcomes model-implementations, Physica Medica, Volume 73, 2020, Pages 190-196, ISSN 1120-1797, https://doi.org/10.1016/j.ejmp.2020.04.011.
+* Aditya P. Apte, Aditi Iyer, Maria Thor, Rutu Pandya, Rabia Haq, Jue Jiang, Eve LoCastro, Amita Shukla-Dave, Nishanth Sasankan, Ying Xiao, Yu-Chi Hu, Sharif Elguindi, Harini Veeraraghavan, Jung Hun Oh, Andrew Jackson, Joseph O. Deasy. "Library of deep-learning image segmentation and outcomes model-implementations." *Physica Medica*, Volume 73, 2020, Pages 190-196, ISSN 1120-1797, https://doi.org/10.1016/j.ejmp.2020.04.011.
 
