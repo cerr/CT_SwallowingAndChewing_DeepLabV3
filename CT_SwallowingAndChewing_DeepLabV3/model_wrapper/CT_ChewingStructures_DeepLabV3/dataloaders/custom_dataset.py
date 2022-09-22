@@ -50,15 +50,16 @@ class struct(data.Dataset):
         # Read H5 image
         hf = h5py.File(img_path, 'r')
         datasetName = list(hf.keys())
-        datasetName = datasetName[0]
-        dset = '/' + datasetName
-        if datasetName=='OctaveExportScan':
-            im = hf[dset]
-            im = im['value']
-            im = im[:]
+        if "scan" in datasetName:
+             im = hf['/scan'][:]
         else:
-           im = hf[dset][:]
-
+            if "OctaveExportScan" in datasetName:
+                im = hf['/OctaveExportScan']
+                im = im['value']
+                im = im[:]
+            else:
+                raise Exception("Scan dataset not found.")     
+   
         #Resize image
         image = np.array(im)
         image = image.reshape(im.shape).transpose()
