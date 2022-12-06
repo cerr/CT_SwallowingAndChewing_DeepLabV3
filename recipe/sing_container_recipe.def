@@ -1,0 +1,161 @@
+Bootstrap: docker
+From: nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+
+%environment
+
+	#Environment variables
+
+	#Use bash as default shell
+	SHELL=/bin/bash
+
+	#Add nvidia driver paths
+	PATH="/nvbin:$PATH"
+	LD_LIBRARY_PATH="/nvlib:$LD_LIBRARY_PATH"
+
+	#Add CUDA paths
+	CPATH="/usr/local/cuda/include:$CPATH"
+	PATH="/usr/local/cuda/bin:${PATH}"
+        LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+	CUDA_HOME="/usr/local/cuda"
+
+	export PATH LD_LIBRARY_PATH CPATH PYTHONPATH CUDA_HOME
+
+
+%setup
+	#Runs on host. $SINGULARITY_ROOTFS is the path to the image
+        
+        #Copy environment file 
+        cp /cluster/home/iyera/temp/main/CT_SwallowingAndChewing_DeepLabV3/environment.yml ${SINGULARITY_ROOTFS}
+       
+        #Copy models and python codebase 
+        cp -R /cluster/home/iyera/temp/main/CT_SwallowingAndChewing_DeepLabV3/model/ ${SINGULARITY_ROOTFS}        
+	cp -R /cluster/home/iyera/temp/main/CT_SwallowingAndChewing_DeepLabV3/model_wrapper/CT_ChewingStructures_DeepLabV3/ ${SINGULARITY_ROOTFS}
+        cp -R /cluster/home/iyera/temp/main/CT_SwallowingAndChewing_DeepLabV3/model_wrapper/CT_Larynx_DeepLabV3/ ${SINGULARITY_ROOTFS}
+        cp -R /cluster/home/iyera/temp/main/CT_SwallowingAndChewing_DeepLabV3/model_wrapper/CT_PharyngealConstrictor_DeepLabV3/ ${SINGULARITY_ROOTFS}
+
+          
+%post
+	#Post setup script
+
+	#Load environment variables
+	. /environment
+
+        #Mount paths
+        mkdir /scratch /data /shared /fastdata
+        mkdir /nvlib /nvbin
+
+        mkdir /build
+        mv /environment.yml /build/environment.yml
+
+  	#Install miniconda 
+        apt update
+        apt install -y wget
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /build/Miniconda3-latest-Linux-x86_64.sh
+        bash /build/Miniconda3-latest-Linux-x86_64.sh -b -p /miniconda3
+        export PATH=/miniconda3/bin:/miniconda3/condabin:${PATH} 
+        conda init
+        
+        #Upgrade to latest version
+        conda update -n base -c defaults conda
+
+        #Install required packages in conda env
+        ENV_NAME=$(head -1 /build/environment.yml | cut -d' ' -f2)
+        conda env create -f /build/environment.yml -p /miniconda3/envs/$ENV_NAME
+        echo ". /miniconda3/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
+        echo "conda activate $ENV_NAME" >> $SINGULARITY_ENVIRONMENT
+   
+        #Update default python path
+        export PYTHONPATH=/miniconda3/bin/  
+
+        #Copy model dependencies into "software" directory
+        mkdir /software
+        cp -r /model/ /software
+        cp -r /CT_ChewingStructures_DeepLabV3/ /software
+        cp -r /CT_Larynx_DeepLabV3/ /software
+        cp -r /CT_PharyngealConstrictor_DeepLabV3/ /software
+
+        chmod -R 755 /software
+
+        rm -R /model/
+        rm -R /CT_ChewingStructures_DeepLabV3/
+        rm -R /CT_Larynx_DeepLabV3/
+        rm -R /CT_PharyngealConstrictor_DeepLabV3/
+ 
+
+########################################
+# CT_ChewingStructures_DeepLabV3
+########################################
+
+%apprun CT_ChewingStructures_DeepLabV3
+    python /software/CT_ChewingStructures_DeepLabV3/chewing_main.py $1
+
+
+########################################
+# CT_Larynx_DeepLabV3
+########################################
+
+%apprun CT_Larynx_DeepLabV3
+    
+    python /software/CT_Larynx_DeepLabV3/larynx_main.py $1
+
+########################################
+# CT_PharyngealConstrictor_DeepLabV3
+########################################
+
+%apprun CT_PharyngealConstrictor_DeepLabV3
+    
+    python /software/CT_PharyngealConstrictor_DeepLabV3/pharyngeal_constrictor_main.py $1
+
+########################################
+# get_hash
+########################################
+%apprun get_hash
+    cat /software/model_wrapper/hash_id.txt
+
+
+%runscript
+	#Executes with the singularity run command	
+
+        . /environment
+
+%test
+
+	#Load environment variables
+	. /environment
+   
+        #Activate conda env
+        . /miniconda3/etc/profile.d/conda.sh
+        conda activate swChewEnv 
+ 
+	#Test pytorch install
+        python --version
+        python -c "import torch"
+
+%labels
+    Author: Aditi Iyer (iyera@mskcc.org)
+    Singularity version v5.3
+    Recipe version v2.0 (Updated for compatibility with CUDA 11)
+
+%help
+This is a container for deep learning-based segmentation of swallowing and chewing structures including:
+      Left masseter 
+      Right masseter
+      Left medial pterygoid 
+      Right medial pterygoid 
+      Larynx
+      Pharyngeal constrictor muscle
+ 
+	
+By downloading the software for model implementations in CERR and Singularity containers, you are agreeing to the following terms and conditions as well as to the Terms of Use of CERR software.
+
+    THE SOFTWARE IS PROVIDED ?AS IS,? AND CERR DEVELOPMENT TEAM AND ITS COLLABORATORS DO NOT MAKE ANY WARRANTY, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, NOR DO THEY ASSUME ANY LIABILITY OR RESPONSIBILITY FOR THE USE OF THIS SOFTWARE.
+        
+    This software is for research purposes only and has not been approved for clinical use.
+    
+    Software has not been reviewed or approved by the Food and Drug Administration, and is for non-clinical, IRB-approved Research Use Only. In no event shall data or images generated through the use of the Software be used in the provision of patient care.
+    
+    You may publish papers and books using results produced using software provided that you reference the appropriate citations (https://doi.org/10.1118/1.1568978, https://doi.org/10.1002/mp.13046, https://doi.org/10.1101/773929)
+    
+    YOU MAY NOT DISTRIBUTE COPIES of this software, or copies of software derived from this software, to others outside your organization without specific prior written permission from the CERR development team except where noted for specific software products.
+
+    All Technology and technical data delivered under this Agreement are subject to US export control laws and may be subject to export or import regulations in other countries. You agree to comply strictly with all such laws and regulations and acknowledge that you have the responsibility to obtain such licenses to export, re-export, or import as may be required after delivery to you.
